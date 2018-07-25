@@ -1,3 +1,4 @@
+const log = require('loglevel');
 const passport = require('passport')
 const router = require('express').Router()
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
@@ -6,7 +7,7 @@ module.exports = router
 
 if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
 
-  console.log('Google client ID / secret not found. Skipping Google OAuth.')
+  log.warn('Google client ID / secret not found. Skipping Google OAuth.')
 
 } else {
 

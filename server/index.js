@@ -1,3 +1,4 @@
+const log = require('loglevel');
 const path = require('path')
 const express = require('express')
 const morgan = require('morgan')
@@ -11,6 +12,8 @@ const sessionStore = new SequelizeStore({db})
 const PORT = process.env.PORT || 8080
 const app = express()
 module.exports = app
+
+log.enableAll();
 
 if (process.env.NODE_ENV !== 'production') require('../secrets')
 
@@ -57,16 +60,15 @@ const createApp = () => {
   })
 
   app.use((err, req, res, next) => {
-    console.error(err)
-    console.error(err.stack)
+    log.error(err)
+    log.error(err.stack)
     res.status(err.status || 500).send(err.message || 'Internal server error.')
   })
 }
 
 const startListening = () => {
-  const server = app.listen(PORT, () => console.log(`Connected: port ${PORT}`))
+  const server = app.listen(PORT, () => log.info(`Connected: port ${PORT}`))
 }
-
 const syncDb = () => db.sync()
 
 if (require.main === module) {
