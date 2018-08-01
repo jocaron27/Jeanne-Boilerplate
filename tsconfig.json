@@ -3,8 +3,15 @@
     "target": "es6",
     "jsx": "react",
     "module": "commonjs",
-    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "removeComments": false,
+    "listFiles": false,
+    "declaration": false,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true
   },
+  "compileOnSave": false,
   "exclude": [
     "node_modules"
   ]

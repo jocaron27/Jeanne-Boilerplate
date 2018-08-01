@@ -1,23 +1,38 @@
-var path = require("path");
-var config = {
-  entry: ["./app.tsx"],
-  output: {
-    path: path.resolve(__dirname, "build"),
-    filename: "bundle.js"
-  },
-  resolve: {
-    extensions: [".ts", ".tsx", ".js"]
-  },
+const LiveReloadPlugin = require('webpack-livereload-plugin')
+const isDev = process.env.NODE_ENV === 'development'
 
+module.exports = {
+  entry: './client/index.tsx',
+  output: {
+    path: __dirname,
+    filename: './public/bundle.js'
+  },
+  devtool: 'source-map',
   module: {
-    loaders: [
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: 'babel-loader'
+      },
       {
         test: /\.tsx?$/,
-        loader: "ts-loader",
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        loader: 'ts-loader'
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
+      },
+      {
+        test: /\.svg$|\.ttf?|\.woff$|\.woff2|\.eof|\.eot/,
+        loader: 'file-loader'
       }
     ]
-  }
-};
-
-module.exports = config;
+  },
+  plugins: isDev ? [new LiveReloadPlugin({appendScriptTag: true})] : []
+}

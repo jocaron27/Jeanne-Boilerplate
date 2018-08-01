@@ -1,9 +1,8 @@
-import React, {Component} from 'react'
-import { Dispatch } from 'redux';
+import * as React from 'react'
+import {Component} from 'react'
 import {connect} from 'react-redux'
 import {Router} from 'react-router'
 import {Route, Switch} from 'react-router-dom'
-import PropTypes from 'prop-types'
 import history from './history'
 import {Main, Login, Signup, Home } from './components'
 import {me} from './store'
@@ -11,9 +10,7 @@ import {me} from './store'
 /**
  * COMPONENT
  */
-class Routes extends Component {
-
-  props: RoutesProps;
+class Routes extends Component<RoutesProps, {}> {
 
   componentDidMount() {
     this.props.loadInitialData()
@@ -66,7 +63,7 @@ const mapState = (state: State): RoutesState => {
   }
 }
 
-const mapDispatch = (dispatch: Dispatch<() => any>): RoutesDispatch => {
+const mapDispatch = (dispatch): RoutesDispatch => {
   return {
     loadInitialData () {
       dispatch(me())
