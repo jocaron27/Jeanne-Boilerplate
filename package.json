@@ -68,6 +68,7 @@
     "@babel/register": "^7.0.0-beta.40",
     "@types/react": "^16.4.7",
     "@types/react-dom": "^16.0.6",
+    "@types/redux-logger": "^3.0.6",
     "axios-mock-adapter": "^1.9.0",
     "babel-eslint": "^8.2.2",
     "babel-loader": "^8.0.0-beta.4",
