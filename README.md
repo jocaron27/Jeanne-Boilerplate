@@ -8,6 +8,4 @@ This Node + React App Full Stack Boilerplate includes:
 -Seed file
 -Webpack
 -Logger
-
-Soon to come:
--TypeScript
+-TypeScript (see branch: 'typescript')
